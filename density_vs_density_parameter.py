@@ -8,8 +8,8 @@ different ways.
 Energy Density
 --------------
 Since in the general relativistic point of view, matter and energy are the
-same phenomen (E=MC2), we can consider the density of each component as its
-energy density.
+same phenomenon (E=MC2), we can represent the density of each component with
+its energy density.
 
 Critical Energy Density (ced)
 -----------------------------
