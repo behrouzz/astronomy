@@ -30,7 +30,7 @@ is less than this value (ced), the curvature of the universe is negative.
 
 Density Parameter (Omega)
 -------------------------
-If the divide the energy density of each component by the critical energy
+If we divide the energy density of each component by the critical energy
 density, we find its density parameter (Omega). So, each component of the
 universe has an omega at time t which is dimensionless.
 
