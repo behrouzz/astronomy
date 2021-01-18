@@ -36,9 +36,9 @@ Note that the scale factor is a function in terms of time and it depends
 on the model of universe that you choose.
 
 
-If we put te = 0, it means that we want to calculate our distance from
-a particle that has bees emitted exactly at the birth of the universe. So we
-will get the Particle Horizon.
+If we put te = 0, it means that we want to calculate our distance from an
+object that has emitted a photon exactly at the birth of the universe. 
+So we will get the Particle Horizon.
 
 Here, I will use the standard model of the Universe, based on the parameters
 measured by Planck spacecraft between 2009 and 2013. First of all, I define
@@ -75,4 +75,3 @@ dp0 = c.value * integrate.quad(lambda i: 1/a(i), te, t0)[0]
 
 # Convert to billion light-years
 print(dp0*u.Unit('m').to('lyr')/(10**9), 'billion light-years')
-
