@@ -1,5 +1,5 @@
 """
-Plot  in ICRS frame
+Plot brilliant stars in ICRS frame
 """
 
 import requests
