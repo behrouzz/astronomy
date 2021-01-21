@@ -30,7 +30,7 @@ At last, we have found this relation:
 M = (-2.4692309942412667) * Log(period) + (-0.7955436646839337)
 """
 
-import requests, pickle
+import requests
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
