@@ -45,14 +45,8 @@ cols = [i['name'] for i in r['metadata']]
 df = pd.DataFrame(r['data'], columns=cols)
 
 df = df.groupby('oid').mean()
-
 df['log_period'] = np.log10(df['period'])
-
-# Absolute Magnitude
 df['M'] = df['V'] - (5 * np.log10(d/10))
-
-# ignoring outliers
-#df = df[(df['log_period']>0) & (df['log_period']<1.5)]
 
 X = df['log_period'].values.reshape(-1, 1)
 y = df['M'].values.reshape(-1, 1)
