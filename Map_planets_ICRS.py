@@ -22,7 +22,8 @@ dec = c.dec.radian
 
 ax, fig = plt.subplots(figsize=(8,4.2), subplot_kw={'projection':'aitoff'})
 for i in range(len(planets)):
-    plt.plot(ra[i], dec[i], 'o', markersize=sizes[i], c=colors[i], alpha=0.5)
+    plt.plot(ra[i], dec[i], 'o', markersize=sizes[i], c=colors[i], alpha=0.5, label=planets[i])
 plt.grid(True)
+plt.legend()
 plt.show()
 
