@@ -7,7 +7,6 @@ Solar System
 
 import numpy as np
 from astropy import units as u
-from astropy.constants import G, M_sun, M_earth
 from astropy.coordinates import SkyCoord, get_body_barycentric
 from astropy.time import Time
 
