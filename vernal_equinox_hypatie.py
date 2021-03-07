@@ -8,15 +8,14 @@ step = 100
 delta = (t2-t1).total_seconds() / step
 
 while delta > 0.5:
-    d, p = hp.get_position('obs', 'sun', t1, t2, step=step)
-    dec = p[:, 1]
-    ind = np.argmin(np.abs(dec))
-    t1 = d[ind-1]
-    t2 = d[ind+1]
+    obs = hp.Observer('sun', t1, t2, step=step, center='500@399')
+    ind = np.argmin(np.abs(obs.dec))
+    t1 = obs.time[ind-1]
+    t2 = obs.time[ind+1]
     delta = (t2-t1).total_seconds() / step
 
-print('GMT  :', d[ind])
-print('IRAN :', d[ind] + timedelta(hours=3.5))
+print('UTC  :', obs.time[ind])
+print('IRAN :', obs.time[ind] + timedelta(hours=3.5))
 
-#GMT  : 2021-03-20 09:37:11.885000
-#IRAN : 2021-03-20 13:07:11.885000
+#UTC  : 2021-03-20 09:37:11.760000
+#IRAN : 2021-03-20 13:07:11.760000
