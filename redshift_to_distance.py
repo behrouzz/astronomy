@@ -16,3 +16,16 @@ d = (c / H0) * (np.log(1)-np.log(a_e))
 
 print(d.to('Mpc'))
 
+#========================================
+
+import matplotlib.pyplot as plt
+
+zs = np.linspace(0, 5, 1000)
+ds = (c / H0) * (np.log(1)-np.log(1/(1+zs)))
+ds = ds.to('Mpc').value
+
+plt.plot(ds, zs)
+plt.xlabel('Distance (Mpc)')
+plt.ylabel('Redshift (z)')
+plt.grid()
+plt.show()
