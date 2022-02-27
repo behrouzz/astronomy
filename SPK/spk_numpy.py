@@ -83,9 +83,9 @@ def get_pos(file, segment_ind, time):
 # test saving
 t1 = datetime(2020, 1, 1)
 t2 = datetime(2030, 1, 1)
-save_segments('de421.bsp', 'test2030.pickle', t1=t1, t2=t2, seg_list=None)
+save_segments('de440s.bsp', 'de440s_2020_2030.pickle', t1=t1, t2=t2, seg_list=[*range(12)])
 
 # test reading
 t = datetime.utcnow()
-pos = get_pos('test2030.pickle', 2, t)
+pos = get_pos('de440s_2020_2030.pickle', 2, t)
 """
