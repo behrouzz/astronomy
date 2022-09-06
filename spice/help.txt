@@ -1,1 +1,1 @@
-About SPICE and spiceypy
+ex_2.py should be merged in bspice module
