@@ -2,6 +2,20 @@ import erfa
 from datetime import datetime, timedelta
 import numpy as np
 
+def __interpolate(x1, y1, x2, y2, x):
+        a = (y2-y1) / (x2-x1)
+        b = y1 - a*x1
+        return a*x + b
+
+def interpolate(rng, decs):
+    ind = np.argmin(np.abs(decs))
+    dec1 = decs[ind-1]
+    dec2 = decs[ind+1]
+    t1 = rng[ind-1].timestamp()
+    t2 = rng[ind+1].timestamp()
+    t = __interpolate(dec1, t1, dec2, t2, 0)
+    t_vernal = datetime.fromtimestamp(t)
+    return t_vernal
 
 def create_range(t1, t2, steps):
     rng = t2 - t1
@@ -15,33 +29,20 @@ def get_tt(t):
     return tt1, tt2
 
 
-t1 = datetime(2024, 3, 20, 3, 0)
-t2 = datetime(2024, 3, 20, 3, 10)
-rng = create_range(t1, t2, 10000)
+t1 = datetime(2024, 3, 19)
+t2 = datetime(2024, 3, 21)
+rng = create_range(t1, t2, 1000)
 
-gcrs = np.zeros((len(rng),3))
-cirs = np.zeros((len(rng),3))
+decs = np.zeros((len(rng),))
 
 for i, t in enumerate(rng):
     tt1, tt2 = get_tt(t)
-    
     astrom, eo = erfa.apci13(tt1, tt2)
-
     sunGCRS = -astrom[2]*astrom[3]
-    rag, decg, rg = erfa.p2s(sunGCRS)
-    gcrs[i][0] = np.degrees(rag)
-    gcrs[i][1] = np.degrees(decg)
-    gcrs[i][2] = rg
+    raG, decG, _ = erfa.p2s(sunGCRS)
+    _, decs[i] = erfa.atciqz(raG, decG, astrom)
 
-    r, d = erfa.atciqz(rag, decg, astrom)
-    cirs[i][0] = np.degrees(r)
-    cirs[i][1] = np.degrees(d)
-    cirs[i][2] = rg
+t = interpolate(rng, decs)
 
-
-ind1 = np.argmin(np.abs(gcrs[:,1]))
-print('GCRS       :', rng[ind1], '(Not Acceptable)')
-ind = np.argmin(np.abs(cirs[:,1]))
-print('CIRS (UTC) :', rng[ind])
-
-print('CIRS (Iran):', rng[ind] + timedelta(hours=3.5))
+print('UTC   :', t)
+print('Tehran:', t + timedelta(hours=3.5))
