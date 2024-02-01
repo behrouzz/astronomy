@@ -45,11 +45,11 @@ ax.plot(x, y*np.cos(obl), y*np.sin(obl))
 ax.plot((0,0),(0,0), (-1,1), '-k', label='z-axis')
 
 # draw sphere
-u, v = np.mgrid[0:2*np.pi:20j, 0:np.pi:10j]
-x = np.cos(u)*np.sin(v)
-y = np.sin(u)*np.sin(v)
-z = np.cos(v)
-ax.plot_wireframe(x, y, z, color="gray", alpha=0.2)
+u, v = np.mgrid[0:2*np.pi:50j, 0:np.pi:30j]
+xx = np.cos(u)*np.sin(v)
+yy = np.sin(u)*np.sin(v)
+zz = np.cos(v)
+ax.plot_wireframe(xx, yy, zz, color="gray", alpha=0.2)
 
 
 ax.quiver(0, 0, 0, 0, 0, 1, color='r') # CIP vector
@@ -59,11 +59,14 @@ ax.quiver(0, 0, 0, 1, 0, 0, color='g') # Equinox vector
 ax.scatter([0], [0], [0], color="k", s=100)
 
 ax.scatter(star_positions[:,0], star_positions[:,1], star_positions[:,2],
-           c='k', s=2)
+           c='k', s=5)
 
-ax.set_xlim(-1.1, 1.1)
-ax.set_ylim(-1.1, 1.1)
-ax.set_zlim(-1.1, 1.1)
+
+ax.set_box_aspect((2, 2, 2))
+RADIUS = 1.2  # Control value
+ax.set_xlim3d(-RADIUS / 2, RADIUS / 2)
+ax.set_zlim3d(-RADIUS / 2, RADIUS / 2)
+ax.set_ylim3d(-RADIUS / 2, RADIUS / 2)
 
 plt.axis('off')
 #ax.legend()
