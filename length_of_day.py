@@ -44,18 +44,18 @@ def eop62(file=None):
 
 df = eop62()
 
-##t1 = datetime(2022, 1, 1)
-##t2 = datetime(2023, 1, 1)
+##t1 = datetime(2023, 1, 1)
+##t2 = datetime(2024, 1, 1)
 ##df = df[(df['t']>=t1) & (df['t']<t2)]
 
 lod_ms = df['lod'].values * 1000 #milliseconds
 dates = df['t'].values
 
-print('Shortest day:', dates[np.argmin(lod_ms)])
-print('Longest  day:', dates[np.argmax(lod_ms)])
+i_min, i_max = np.argmin(lod_ms), np.argmax(lod_ms)
+print(f'Shortest day: {str(dates[i_min])[:10]} | diff (ms) : {lod_ms[i_min]}')
+print(f'Longest  day: {str(dates[i_max])[:10]} | diff (ms) : {lod_ms[i_max]}')
 
 plt.plot(dates, lod_ms, lw=0.5)
-plt.scatter(dates, lod_ms, s=5)
 plt.title('Length Of Day faster/slower than 24h\n- : shorter than 24h (fast)\n+ : longer than 24h (slow)')
 plt.xlabel('Date')
 plt.ylabel('Faster than 86400s (milliseconds)')
